@@ -25,12 +25,12 @@ func main(){
 
 
   if err != nil {
-    panic(err)
+    fmt.Printf("an error occured")
   }
 
   defer func(){
     if err := file.Close(); err != nil {
-      panic(err)
+      fmt.Printf("an error occured to close file")
     }
   }()
 
