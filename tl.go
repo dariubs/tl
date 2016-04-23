@@ -14,7 +14,13 @@ var (
 
 func main(){
 
+  if len(os.Args) < 2 {
+    fmt.Printf("Wrong number of arguments")
+    os.Exit(1)
+  }
+
   args := os.Args[1:]
+
 
   if args[0] == "create" {
     file, err = os.Create(filename)
