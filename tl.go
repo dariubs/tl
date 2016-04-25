@@ -15,6 +15,7 @@ var (
 func main(){
 
   if len(os.Args) < 2 {
+
     fmt.Printf("Wrong number of arguments")
     os.Exit(1)
   }
@@ -23,7 +24,15 @@ func main(){
 
 
   if args[0] == "create" {
-    file, err = os.Create(filename)
+    _, err := os.Stat(filename)
+
+    if os.IsNotExist(err){
+        file, err = os.Create(filename)
+        fmt.Println("todo file created.")
+    } else {
+      fmt.Println("todo file already exists.")
+    }
+
     return
   } else {
     file, err = os.OpenFile(filename, os.O_APPEND|os.O_WRONLY, 0777)
